@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Media Pembelajaran: Digital Citizen vs Citizen Journalism (Interaktif)</title>
+
+  <style>
+  /* ===== CSS tetap dari kode sebelumnya ===== */
+  :root {
+    --bg: #f0f4ff;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --primary: #4f46e5;
+    --secondary: #10b981;
+    --accent: #f59e0b;
+    --gradient: linear-gradient(135deg, #4f46e5, #6366f1);
+    --radius: 16px;
+    --shadow: 0 12px 28px rgba(0,0,0,0.12);
+    --maxw: 920px;
+    font-family: "Poppins", "Segoe UI", sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    animation: bodyFadeIn 1s ease-out;
+    background: linear-gradient(-45deg, #f0f4ff, #e0f2fe, #f0f4ff, #e0f2fe);
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+  }
+
+  .container { max-width: var(--maxw); width: 100%; }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: cardFloat 6s ease-in-out infinite;
+    margin-bottom: 28px;
+  }
+  .card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  }
+
+  header {
+    position: relative;
+    background: var(--gradient);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+    animation: headerSlideIn 1s ease forwards;
+    opacity: 0;
+  }
+  header h1 { font-size: 2rem; margin: 0 0 8px 0; font-weight: 700; position: relative; z-index: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.2); animation: fadeInLeft 1s ease forwards; opacity: 0; }
+  header .meta { font-size: 0.9rem; opacity: 0.9; position: relative; z-index: 1; animation: fadeInLeft 1.2s ease forwards; opacity: 0; }
+
+  h2 { font-size: 1.4rem; margin: 28px 0 14px 0; border-left: 6px solid var(--primary); padding-left: 14px; color: var(--primary); position: relative; animation: fadeUp 1s ease forwards; opacity: 0; }
+  h3 { font-size: 1.1rem; color: var(--secondary); font-weight: 600; margin-top: 18px; animation: fadeUp 1.1s ease forwards; opacity: 0; }
+
+  p { line-height: 1.75; margin: 0 0 14px 0; color: var(--text); transition: all 0.3s ease; opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards; }
+  p:nth-of-type(1) { animation-delay: 0.2s; }
+  p:nth-of-type(2) { animation-delay: 0.4s; }
+  p:nth-of-type(3) { animation-delay: 0.6s; }
+
+  .highlight {
+    background: rgba(245,158,11,0.12);
+    border-left: 5px solid var(--accent);
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin: 14px 0;
+    font-size: 1rem;
+    animation: pulse 3s infinite ease-in-out;
+  }
+
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; border-radius: 12px; overflow: hidden; font-size: 0.95rem; animation: slideIn 1s ease forwards; opacity: 0; }
+  table th { background: var(--gradient); color: #fff; padding: 12px; text-align: left; }
+  table td { border: 1px solid #e0e7ff; padding: 10px 12px; background: #f8faff; transition: background 0.3s ease; }
+  table tr:nth-child(even) td { background: #eef3ff; }
+
+  .btn { padding: 12px 20px; background: var(--gradient); color: #fff; border-radius: 12px; text-decoration: none; font-size: 0.95rem; transition: all 0.3s ease; box-shadow: 0 6px 16px rgba(79,70,229,0.25); position: relative; overflow: hidden; cursor:pointer; }
+  .btn::after { content: ''; position: absolute; left: -50%; top: 0; width: 200%; height: 100%; background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0)); transform: skewX(-25deg) translateX(-100%); transition: transform 0.6s ease; }
+  .btn:hover::after { transform: skewX(-25deg) translateX(100%); }
+  .btn:hover { transform: scale(1.08); box-shadow: 0 10px 28px rgba(79,70,229,0.35); }
+
+  footer { margin-top: 32px; font-size: 0.9rem; color: var(--muted); text-align: center; border-top: 1px dashed #cbd5e1; padding-top: 12px; animation: fadeUp 1s ease forwards; opacity: 0; }
+
+  /* Animations */
+  @keyframes bodyFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes gradientBG { 0% { background-position:0% 50% } 50% { background-position:100% 50% } 100% { background-position:0% 50% } }
+  @keyframes cardFloat { 0%,100% { transform: translateY(0) } 50% { transform: translateY(12px) } }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(20px) } to { opacity:1; transform: translateY(0) } }
+  @keyframes headerSlideIn { from { opacity:0; transform: translateX(-30px) } to { opacity:1; transform: translateX(0) } }
+  @keyframes fadeInLeft { from { opacity:0; transform: translateX(-20px) } to { opacity:1; transform: translateX(0) } }
+  @keyframes pulse { 0%,100%{opacity:0.8;}50%{opacity:1;} }
+  @keyframes slideIn { from { opacity:0; transform: translateY(15px); } to { opacity:1; transform: translateY(0); } }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <article class="card" role="main">
+      <!-- Header -->
+      <header>
+        <h1>Media Pembelajaran: <span>Digital Citizen</span> vs <span>Citizen Journalism</span></h1>
+        <div class="meta">Makalah interaktif — Gaya akademik untuk pembelajaran digital. (Sumber lokal ≥2020)</div>
+      </header>
+
+      <!-- Section Pembukaan Data Diri -->
+      <section>
+        <h2>Data Author</h2>
+        <div class="highlight" style="text-align:left; padding:20px;">
+          <p>Nama : <strong>Devie Fitri Yany</strong></p>
+          <p>NIM : <strong>053841179</strong></p>
+          <p>Semester : <strong>3 (Tiga)</strong></p>
+          <p>Program Studi : <strong>Ilmu Komunikasi</strong></p>
+          <p>Matakuliah : <strong>Sistem Komunikasi</strong></p>
+        </div>
+      </section>
+
+      <!-- Abstrak -->
+      <section>
+        <h2>Abstrak</h2>
+        <p>Makalah ini membahas perbedaan konsep <em>digital citizen</em> (kewargaan digital) dan <em>citizen journalism</em> (jurnalisme warga). Melalui literatur lokal terbaru, dijelaskan bagaimana kedua peran ini saling melengkapi dalam membentuk partisipasi publik yang cerdas dan etis di dunia digital.</p>
+      </section>
+
+      <!-- Pendahuluan -->
+      <section>
+        <h2>Pendahuluan</h2>
+        <p>Era <span class="tooltip" data-tooltip="Transformasi digital yang mengubah cara kita berkomunikasi">digitalisasi</span> telah mengaburkan batas antara produsen dan konsumen informasi. Pengguna internet kini menjadi warga aktif yang tidak hanya menerima tetapi juga menciptakan informasi (<em>user-generated content</em>). Dalam konteks ini, pemahaman tentang <strong>digital citizenship</strong> dan <strong>citizen journalism</strong> menjadi sangat penting.</p>
+      </section>
+
+      <!-- Landasan Teori -->
+      <section>
+        <h2>Landasan Teori</h2>
+        <h3>Digital Citizen</h3>
+        <p><strong>Digital citizen</strong> adalah individu yang berpartisipasi aktif di dunia maya dengan sikap etis, kritis, dan bertanggung jawab (Roza, 2020). Mereka memahami hak digital, keamanan data, serta berperan positif dalam komunitas daring.</p>
+        <h3>Citizen Journalism</h3>
+        <p><strong>Citizen journalism</strong> merupakan bentuk jurnalisme partisipatif yang dilakukan oleh masyarakat umum melalui media sosial, blog, atau kanal berita digital (Wahyudi, 2020). Fenomena ini memperkuat demokratisasi informasi namun juga menuntut kemampuan verifikasi yang baik.</p>
+      </section>
+
+      <!-- Karakteristik -->
+      <section>
+        <h2>Karakteristik</h2>
+        <div class="highlight">Kedua konsep ini saling terkait: seorang <em>digital citizen</em> dapat menjadi <em>citizen journalist</em> jika ia menjalankan prinsip etika dan literasi media.</div>
+        <h3>Digital Citizen</h3>
+        <ol>
+          <li>Beretika dan menghormati privasi digital orang lain.</li>
+          <li>Mampu memilah fakta dan opini.</li>
+          <li>Berpartisipasi positif di media sosial.</li>
+        </ol>
+        <h3>Citizen Journalism</h3>
+        <ul>
+          <li>Aktif menyebarkan berita komunitas lokal.</li>
+          <li>Memanfaatkan platform digital dengan cepat.</li>
+          <li>Namun perlu meningkatkan verifikasi agar akurat.</li>
+        </ul>
+      </section>
+
+      <!-- Perbandingan Inti -->
+      <section>
+        <h2>Perbandingan Inti</h2>
+        <table>
+          <thead>
+            <tr><th>Aspek</th><th>Digital Citizen</th><th>Citizen Journalism</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Fokus</td><td>Etika dan literasi digital</td><td>Pemberitaan warga</td></tr>
+            <tr><td>Risiko</td><td>Pelanggaran privasi</td><td>Misinformasi</td></tr>
+            <tr><td>Tujuan</td><td>Tanggung jawab digital</td><td>Partisipasi informasi</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Form & Quiz -->
+      <div class="container">
+        <section id="formDataDiri" class="card">
+          <h2>Quiz Singkat</h2>
+          <p>Mohon untuk mengisi nama dan kelas sebelum memulai quiz. Nilai akan langsung muncul setelah mengisi dan submit soal-soal yang telah dijawab. Selamat Mengerjakan soal-soal.</p>
+          <label>Nama: <input type="text" id="nama" placeholder="Masukkan nama"></label><br>
+          <label>Kelas: <input type="text" id="kelas" placeholder="Masukkan kelas"></label><br><br>
+          <button class="btn" onclick="mulaiQuiz()">Mulai Quiz</button>
+        </section>
+
+        <section id="quizSection" class="card" style="display:none;">
+          <h2>Quiz: Digital Citizen vs Citizen Journalism</h2>
+          <form id="quizForm">
+            <ol id="quizList"></ol>
+            <button type="button" class="btn" onclick="submitQuiz()">Submit Jawaban</button>
+          </form>
+          <div id="hasilQuiz" style="margin-top:20px;"></div>
+        </section>
+      </div>
+
+      <!-- Kesimpulan -->
+      <section>
+        <h2>Kesimpulan</h2>
+        <p>Makalah ini menekankan perbedaan dan keterkaitan antara konsep digital citizen dan citizen journalism. Digital citizen adalah individu yang berpartisipasi secara aktif dan bertanggung jawab di dunia digital, dengan fokus pada etika, literasi media, dan keamanan data. Sementara itu, citizen journalism adalah praktik jurnalisme yang dilakukan oleh masyarakat umum untuk menyebarkan informasi melalui platform digital, dengan fokus pada partisipasi informasi dan pemberitaan komunitas. Kedua konsep ini saling melengkapi, karena seorang digital citizen yang memahami etika dan literasi media dapat berperan sebagai citizen journalist yang bertanggung jawab. Dengan demikian, keduanya berkontribusi pada terciptanya partisipasi publik yang cerdas, etis, dan kritis di era digital.</p>
+      </section>
+
+      <!-- Toolbar & Footer -->
+      <div class="toolbar">
+        <a class="btn" href="#" onclick="window.print();return false;">🖨️ Cetak / Simpan PDF</a>
+      </div>
+      <footer>
+        © 2025 Media Pembelajaran Interaktif — Didesain untuk literasi digital
+      </footer>
+    </article>
+  </div>
+
+  <script>
+  // ===== Quiz Script =====
+  const quizData = [
+    {q:"Apa fokus utama Digital Citizen?", a:["Etika dan literasi digital","Pemberitaan warga","Menyebarkan hoaks"], correct:0},
+    {q:"Apa risiko utama Citizen Journalism?", a:["Misinformasi","Pelanggaran privasi","Tanggung jawab digital"], correct:0},
+    {q:"Siapa yang bisa menjadi Citizen Journalist?", a:["Digital Citizen yang etis","Hanya wartawan profesional","Siapa saja tanpa batas"], correct:0},
+    {q:"Tujuan Digital Citizen?", a:["Tanggung jawab digital","Menyebarkan berita","Meningkatkan followers"], correct:0},
+    {q:"Platform yang biasa digunakan Citizen Journalism?", a:["Media sosial, blog","Hanya surat kabar","Radio tradisional"], correct:0},
+    {q:"Etika Digital Citizen meliputi?", a:["Menghormati privasi orang lain","Mengirim spam","Menipu data"], correct:0},
+    {q:"Apa yang harus dimiliki Citizen Journalist?", a:["Kemampuan verifikasi","Hanya cepat share","Mengabaikan fakta"], correct:0},
+    {q:"Digital Citizen berpartisipasi di?", a:["Media sosial dan komunitas online","Hanya forum offline","Televisi"], correct:0},
+    {q:"Citizen Journalism memperkuat?", a:["Demokratisasi informasi","Rahasia pribadi","Kontrol pemerintah"], correct:0},
+    {q:"Siapa target utama literasi digital?", a:["Pengguna internet umum","Hanya programmer","Anak kecil tanpa internet"], correct:0},
+  ];
+
+  function mulaiQuiz(){
+    const nama = document.getElementById('nama').value.trim();
+    const kelas = document.getElementById('kelas').value.trim();
+    if(!nama || !kelas){
+      alert("Silakan isi nama dan kelas!");
+      return;
+    }
+    document.getElementById('formDataDiri').style.display = 'none';
+    document.getElementById('quizSection').style.display = 'block';
+
+    const quizList = document.getElementById('quizList');
+    quizList.innerHTML = "";
+    quizData.forEach((item,i)=>{
+      const li = document.createElement('li');
+      li.innerHTML = `<p>${item.q}</p>` + item.a.map((ans,j)=> `<label><input type="radio" name="q${i}" value="${j}"> ${ans}</label><br>` ).join('');
+      quizList.appendChild(li);
+    });
+  }
+
+  function submitQuiz(){
+    let skor = 0;
+    quizData.forEach((item,i)=>{
+      const jawaban = document.querySelector(`input[name="q${i}"]:checked`);
+      if(jawaban && parseInt(jawaban.value) === item.correct) skor++;
+    });
+    const nama = document.getElementById('nama').value.trim();
+    const kelas = document.getElementById('kelas').value.trim();
+    document.getElementById('hasilQuiz').innerHTML =
+      `<h3>Hasil Quiz</h3>
+       <p>Nama: ${nama}</p>
+       <p>Kelas: ${kelas}</p>
+       <p>Benar: ${skor}</p>
+       <p>Salah: ${quizData.length - skor}</p>
+       <p>Nilai: ${skor * 10}</p>`;
+  }
+  </script>
+</body>
+</html>
